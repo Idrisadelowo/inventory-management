@@ -12,6 +12,18 @@ server_path = Path(__file__).parent.parent.parent / "server"
 sys.path.insert(0, str(server_path))
 
 from main import app
+from mock_data import restock_orders, purchase_orders, tasks
+
+
+@pytest.fixture(autouse=True)
+def reset_in_memory_state():
+    """Clear API-created records so tests don't leak state into each other."""
+    # Clear in place: main.py imported these same list objects, so rebinding wouldn't reach them
+    for records in (restock_orders, purchase_orders, tasks):
+        records.clear()
+    yield
+    for records in (restock_orders, purchase_orders, tasks):
+        records.clear()
 
 
 @pytest.fixture

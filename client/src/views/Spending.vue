@@ -513,21 +513,17 @@ export default {
   font-size: 1rem;
 }
 
-.chart-card {
-  margin-bottom: 1.75rem;
-}
-
 .chart-legend {
   display: flex;
-  gap: 1.5rem;
-  font-size: 0.875rem;
+  gap: var(--space-6);
+  font-size: var(--text-sm);
 }
 
 .legend-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  color: #64748b;
+  gap: var(--space-2);
+  color: var(--color-text-muted);
 }
 
 .legend-dot {
@@ -545,27 +541,16 @@ export default {
 
 .stats-grid-finance {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.revenue-card {
-  border-left: 4px solid #0f172a;
-}
-
-.cost-card {
-  border-left: 4px solid #ef4444;
-}
-
-.profit-card {
-  border-left: 4px solid #3b82f6;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  /* Same gap and spacing as the global .stats-grid so KPI rows match across views */
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
 }
 
 .stat-meta {
-  margin-top: 0.5rem;
-  font-size: 0.813rem;
-  color: #64748b;
+  margin-top: var(--space-2);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
 }
 
 .bar-group-revenue {
@@ -610,12 +595,12 @@ export default {
 }
 
 .chart-container {
-  padding: 1.5rem 0;
+  padding: var(--space-6) 0;
 }
 
 .bar-chart {
   display: flex;
-  gap: 1.5rem;
+  gap: var(--space-6);
   height: 350px;
 }
 
@@ -623,10 +608,10 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-right: 1rem;
-  font-size: 0.75rem;
-  color: #94a3b8;
-  border-right: 1px solid #e2e8f0;
+  padding-right: var(--space-4);
+  font-size: var(--text-xs);
+  color: var(--color-text-subtle);
+  border-right: 1px solid var(--color-border);
 }
 
 .chart-area {
@@ -634,7 +619,7 @@ export default {
   display: flex;
   align-items: flex-end;
   justify-content: space-around;
-  gap: 0.5rem;
+  gap: var(--space-2);
 }
 
 .bar-group {
@@ -652,7 +637,7 @@ export default {
   flex-direction: column-reverse;
   align-items: stretch;
   height: 100%;
-  padding-bottom: 2rem;
+  padding-bottom: var(--space-8);
   cursor: pointer;
   transition: opacity 0.2s ease;
 }
@@ -686,28 +671,35 @@ export default {
 }
 
 .bar-label {
-  margin-top: 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #64748b;
+  margin-top: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-muted);
 }
 
 .two-column-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-  gap: 1.75rem;
+  /* min() so the 450px minimum never exceeds the column on narrow screens */
+  grid-template-columns: repeat(auto-fit, minmax(min(450px, 100%), 1fr));
+  gap: var(--space-6);
+}
+
+/* The grid gap already spaces these cards; drop the global card margin so
+   vertical gaps match the horizontal ones */
+.two-column-grid > .card {
+  margin-bottom: 0;
 }
 
 .category-list {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: var(--space-6);
 }
 
 .category-item {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--space-2);
 }
 
 .category-info {
@@ -717,13 +709,17 @@ export default {
 }
 
 .category-name {
-  font-weight: 600;
-  color: #0f172a;
+  font-weight: var(--weight-semibold);
+  color: var(--color-text);
 }
 
+/* Graphite rather than the old blue link color: it's a figure, not a link,
+   and the bar below already carries the series color */
 .category-amount {
-  font-weight: 700;
-  color: #2563eb;
+  font-family: var(--font-figures);
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--weight-semibold);
+  color: var(--color-text);
   font-size: 1.125rem;
 }
 
@@ -745,15 +741,16 @@ export default {
 .category-meta {
   display: flex;
   justify-content: space-between;
-  font-size: 0.813rem;
+  font-size: var(--text-xs);
 }
 
 .percentage {
-  color: #64748b;
+  color: var(--color-text-muted);
 }
 
 .change {
   font-weight: 600;
+  font-variant-numeric: tabular-nums;
 }
 
 .change.positive {
@@ -774,37 +771,18 @@ export default {
   max-height: 400px;
 }
 
-.transactions-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
+/* Header stays visible while the 400px-tall list scrolls inside its own container.
+   Needs an opaque background (panel white, matching the unfilled global header)
+   or rows would show through it */
 .transactions-table thead {
   position: sticky;
   top: 0;
-  background: #f8fafc;
+  background: var(--color-surface);
   z-index: 1;
-}
-
-.transactions-table th {
-  text-align: left;
-  padding: 0.625rem 0.75rem;
-  font-weight: 600;
-  color: #475569;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border-bottom: 1px solid #e2e8f0;
 }
 
 .transactions-table th.text-right {
   text-align: right;
-}
-
-.transactions-table td {
-  padding: 0.75rem 0.75rem;
-  border-bottom: 1px solid #f1f5f9;
-  font-size: 0.875rem;
 }
 
 .transactions-table tbody tr {
@@ -812,38 +790,35 @@ export default {
   transition: background-color 0.15s ease;
 }
 
-.transactions-table tbody tr:hover {
-  background: #f8fafc;
-}
-
 .transactions-table tbody tr.clickable-row:hover {
-  background: #eff6ff;
+  background: var(--color-accent-soft);
 }
 
+/* Condensed figures face instead of monospace for IDs, matching SKUs elsewhere */
 .transaction-id {
-  color: #64748b;
-  font-weight: 500;
-  font-family: 'Monaco', 'Courier New', monospace;
-  font-size: 0.813rem;
+  color: var(--color-text-muted);
+  font-weight: var(--weight-medium);
+  font-family: var(--font-figures);
+  font-size: var(--text-xs);
 }
 
 .transaction-description {
-  color: #0f172a;
-  font-weight: 500;
+  color: var(--color-text);
+  font-weight: var(--weight-medium);
 }
 
 .transaction-vendor {
-  color: #64748b;
+  color: var(--color-text-muted);
 }
 
 .transaction-date {
-  color: #64748b;
-  font-size: 0.813rem;
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
 }
 
 .transaction-amount {
-  font-weight: 700;
-  color: #0f172a;
+  font-weight: var(--weight-semibold);
+  color: var(--color-text);
 }
 
 .text-right {

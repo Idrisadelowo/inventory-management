@@ -53,3 +53,16 @@ logs/
 
 # Environment variables
 .env
+.env.*
+!.env.example
+
+# Secrets and keys
+*.pem
+*.key
+*.p12
+*.pfx
+.npmrc.local
+
+# Claude Code local settings (may contain tokens or local paths)
+.claude/settings.local.json
+.mcp.local.json

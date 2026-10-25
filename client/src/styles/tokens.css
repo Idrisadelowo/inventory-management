@@ -1,0 +1,128 @@
+/*
+ * Design tokens: the single source for color, spacing, radius, shadow,
+ * type, layout and layering. Imported once in main.js before App.vue's
+ * global styles, so every component can use var(--token).
+ *
+ * "Control room" direction: graphite chrome, a quiet light work area, and
+ * safety amber reserved for things that need attention (active nav marker,
+ * focus, low-stock and warning signals). Primary actions are graphite, not
+ * amber, so amber never turns into decoration and keeps its alert meaning.
+ *
+ * Existing modals use z-index 1000-2000 and dropdowns 1000; those sit
+ * above every --z-* value below, so the sticky shell never covers them.
+ */
+:root {
+  /* ---- Color: neutrals (graphite / steel) ---- */
+  --color-bg: #f5f7fa;            /* "paper": work area behind panels */
+  --color-surface: #ffffff;       /* panels, top bar, filter row */
+  --color-surface-muted: #eef1f4; /* hover rows, subtle fills */
+  --color-border: #d9dee4;        /* "rule": panel borders, table rules */
+  --color-border-strong: #bcc5ce; /* input borders */
+  --color-text: #1f2933;          /* graphite: headings, primary text */
+  --color-text-secondary: #3e4c59;
+  --color-text-muted: #52606d;    /* steel: labels, captions, icons */
+  --color-text-subtle: #7b8794;   /* placeholders, disabled */
+
+  /* ---- Color: primary actions (graphite) ---- */
+  --color-accent: #1f2933;
+  --color-accent-hover: #323f4b;
+  --color-accent-soft: #e9edf1;   /* selected rows, pressed states */
+  --color-accent-text: #1f2933;   /* text on accent-soft */
+
+  /* ---- Color: attention (safety amber) - use only for "look here" ---- */
+  --color-attention: #f0a500;
+  --color-attention-soft: #fff4d6;
+  --color-attention-text: #7a5200; /* ochre: readable amber on white */
+  --color-focus-ring: rgba(240, 165, 0, 0.55);
+
+  /* ---- Color: sidebar (graphite chrome) ---- */
+  --color-sidebar-bg: #1f2933;
+  --color-sidebar-border: #323f4b;
+  --color-sidebar-text: #cbd2d9;
+  --color-sidebar-text-muted: #9aa5b1;
+  --color-sidebar-text-active: #ffffff;
+  --color-sidebar-hover: rgba(255, 255, 255, 0.06);
+  --color-sidebar-active: rgba(255, 255, 255, 0.1);
+
+  /* ---- Color: status (meanings unchanged; warning shares the attention amber) ---- */
+  --color-success: #2f855a;
+  --color-success-soft: #e3f4ea;
+  --color-success-text: #22643f;
+  --color-info: #3b6e8f;
+  --color-info-soft: #e4eef5;
+  --color-info-text: #2a5270;
+  --color-warning: #f0a500;
+  --color-warning-soft: #fff4d6;
+  --color-warning-text: #7a5200;
+  --color-danger: #c53030;
+  --color-danger-soft: #fde8e8;
+  --color-danger-text: #9b2c2c;
+
+  /* ---- Spacing: 4px grid. Use these, not ad-hoc rem values ---- */
+  --space-0: 0;
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.25rem;  /* 20px */
+  --space-6: 1.5rem;   /* 24px */
+  --space-8: 2rem;     /* 32px */
+  --space-10: 2.5rem;  /* 40px */
+  --space-12: 3rem;    /* 48px */
+
+  /* ---- Radius: follows hierarchy (controls < panels), not one value everywhere ---- */
+  --radius-sm: 4px;    /* badges, inputs */
+  --radius-md: 4px;    /* buttons, nav items */
+  --radius-lg: 6px;    /* panels */
+  --radius-full: 999px;
+
+  /* ---- Shadow: panels sit flat on rules; only floating things get a shadow ---- */
+  --shadow-sm: none;
+  --shadow-md: 0 8px 24px rgba(31, 41, 51, 0.14); /* dropdowns, modals */
+
+  /* ---- Typography ---- */
+  /* Plex was drawn for industrial use; the JP cut keeps the Japanese locale in the same voice */
+  --font-sans: "IBM Plex Sans", "IBM Plex Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  /* Condensed cut for figures: KPI readouts, numeric columns. Pair with tabular-nums */
+  --font-figures: "IBM Plex Sans Condensed", "IBM Plex Sans", "IBM Plex Sans JP", "Arial Narrow", sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Consolas, Menlo, monospace;
+  /* Scale: 12 / 14 / 16 / 20 / 28 */
+  --text-xs: 0.75rem;   /* 12px: table headers, captions */
+  --text-sm: 0.875rem;  /* 14px: dense UI, nav items, labels */
+  --text-base: 1rem;    /* 16px: body */
+  --text-lg: 1rem;      /* 16px semibold: panel titles */
+  --text-xl: 1.25rem;   /* 20px: page titles */
+  --text-2xl: 1.75rem;  /* 28px: KPI readouts (condensed) */
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 600;   /* Plex is loaded up to 600; keeps "bold" on a real weight */
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+
+  /* ---- Layout ---- */
+  --sidebar-width: 232px;
+  --sidebar-width-collapsed: 64px; /* icon-only rail: 20px icon + padding, centred */
+  --topbar-height: 56px;
+  --content-max: 1440px;
+  --content-padding: var(--space-8);
+
+  /* ---- Motion ---- */
+  --transition-fast: 120ms ease;
+
+  /* ---- Layering: keep overlays above the sticky shell ---- */
+  --z-sidebar: 20;
+  --z-topbar: 30;
+  --z-dropdown: 40;
+  --z-modal: 50;
+}
+
+/* Existing hover and toggle transitions stay, but not for people who asked for less motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
