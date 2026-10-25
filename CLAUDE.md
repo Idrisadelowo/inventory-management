@@ -70,7 +70,12 @@ npm install && npm run dev
 - Styles: `client/src/App.vue`
 
 ## Design System
-- Colors: Slate/gray (#0f172a, #64748b, #e2e8f0)
-- Status: green/blue/yellow/red
+- Tokens: all colors, spacing, radii, shadows and type live in `client/src/styles/tokens.css` - use `var(--...)`, not hex values
+- Colors: graphite #1f2933 (chrome, text, primary buttons), steel #52606d, rule #d9dee4, paper #f5f7fa
+- Safety amber #f0a500 means attention only (active nav, focus, low stock, warnings) - never decoration or primary buttons
+- Status: green/blue/amber/red
+- Type: IBM Plex Sans (UI), IBM Plex Sans Condensed + tabular-nums (figures), sentence-case labels (no all-caps)
+- Panels: 1px rule border, no shadow; shadows only on dropdowns and modals
+- Layout: graphite left sidebar (`AppSidebar.vue`), sticky top bar + filter row
 - Charts: Custom SVG, CSS Grid for layouts
 - No emojis in UI

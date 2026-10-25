@@ -6,8 +6,12 @@ export default {
     orders: '注文',
     finance: '財務',
     demandForecast: '需要予測',
+    restocking: '補充発注',
+    reports: 'レポート',
     companyName: '触媒コンポーネンツ',
-    subtitle: '在庫管理システム'
+    subtitle: '在庫管理システム',
+    collapseSidebar: 'サイドバーを折りたたむ',
+    expandSidebar: 'サイドバーを展開する'
   },
 
   // Dashboard
@@ -55,7 +59,11 @@ export default {
       daysDelayed: '遅延日数',
       priority: '優先度',
       unitsShort: '単位不足',
-      days: '日'
+      days: '日',
+      item: '品目',
+      availableNeeded: '在庫 / 必要',
+      shortageUnits: '不足数',
+      actions: '操作'
     },
     topProducts: {
       title: '収益別トップ製品',
@@ -126,6 +134,20 @@ export default {
       status: 'ステータス',
       expectedDelivery: '予定配達日',
       actualDelivery: '実際の配達日'
+    },
+    submittedOrders: {
+      title: '発注済みの注文',
+      description: 'サプライヤーへの補充発注',
+      empty: '発注済みの補充注文はまだありません。',
+      orderNumber: '注文番号',
+      items: '品目',
+      totalValue: '合計金額',
+      submittedDate: '発注日',
+      leadTime: 'リードタイム',
+      expectedDelivery: '予定配達日',
+      status: 'ステータス',
+      days: '{count}日',
+      submitted: '発注済み'
     }
   },
 
@@ -185,6 +207,38 @@ export default {
       change: '変化',
       trend: 'トレンド',
       period: '期間'
+    }
+  },
+
+  // Restocking
+  restocking: {
+    title: '補充発注',
+    description: '予算内で需要予測に基づいた補充発注を計画',
+    budget: '利用可能な予算',
+    budgetHint: '需要予測の伸び率が高い品目を優先します',
+    recommendations: '推奨品目',
+    noRecommendations: '予算が不足しているため補充できる品目がありません。予算を増やすと推奨品目が表示されます。',
+    selectedTotal: '選択合計',
+    remainingBudget: '残りの予算',
+    estimatedLeadTime: '予想リードタイム',
+    itemsSelected: '{count}件選択中',
+    days: '{count}日',
+    placeOrder: '発注する',
+    placingOrder: '発注中...',
+    orderPlaced: '注文 {orderNumber} を発注しました。{days}日後に配達予定です。',
+    viewOrders: '注文で確認',
+    loadError: '推奨品目の読み込みに失敗しました',
+    submitError: '発注に失敗しました',
+    table: {
+      select: '選択',
+      sku: 'SKU',
+      itemName: '品目名',
+      trend: 'トレンド',
+      forecastedDemand: '予測',
+      quantity: '数量',
+      unitCost: '単価',
+      lineTotal: '小計',
+      leadTime: 'リードタイム'
     }
   },
 
@@ -302,6 +356,43 @@ export default {
     dueDate: '期限',
     addTask: 'タスクを追加',
     noTasks: 'タスクがありません。上記からタスクを追加してください！'
+  },
+
+  // Purchase order modal
+  purchaseOrder: {
+    createTitle: '発注書を作成',
+    viewTitle: '発注書',
+    sku: 'SKU',
+    shortage: '不足数',
+    units: '個',
+    supplier: '仕入先',
+    supplierPlaceholder: '仕入先名を入力',
+    quantity: '数量',
+    unitCost: '単価',
+    expectedDelivery: '納品予定日',
+    notes: '備考',
+    notesPlaceholder: '仕入先への備考（任意）',
+    lineTotal: '合計',
+    submit: '発注書を作成',
+    saving: '保存中...',
+    loading: '発注書を読み込み中...',
+    poNumber: '発注番号',
+    status: 'ステータス',
+    createdDate: '作成日',
+    noNotes: 'なし',
+    createFailed: '発注書の作成に失敗しました。もう一度お試しください。',
+    loadFailed: '発注書の読み込みに失敗しました。',
+    errSupplier: '仕入先名は必須です。',
+    errQuantity: '数量は1以上の整数で入力してください。',
+    errUnitCost: '単価は0以上で入力してください。',
+    errDate: '納品予定日は必須です。',
+    statuses: {
+      pending: '保留中',
+      ordered: '発注済み',
+      shipped: '出荷済み',
+      received: '入荷済み',
+      cancelled: 'キャンセル'
+    }
   },
 
   // Language
