@@ -388,6 +388,12 @@ export default {
     border-right: none;
     border-bottom: 1px solid var(--color-sidebar-border);
     overflow-x: auto;
+    /* Still swipe-scrollable; the bar just isn't drawn over the strip */
+    scrollbar-width: none;
+  }
+
+  .sidebar::-webkit-scrollbar {
+    display: none;
   }
 
   .sidebar-brand {

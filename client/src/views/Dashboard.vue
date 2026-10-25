@@ -784,6 +784,11 @@ export default {
   .kpi-card:last-child {
     grid-column: 1 / -1;
   }
+  /* Half-width cells are too narrow for an 8-digit currency figure at 2xl.
+     Scoped under .kpi-card to outrank the base .kpi-value rule declared below */
+  .kpi-card .kpi-value {
+    font-size: var(--text-xl);
+  }
 }
 
 @container (max-width: 339px) {
